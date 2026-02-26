@@ -1,10 +1,7 @@
 #!/bin/bash
-IMAGE_NAME="your-dockerhub-username/aj-tasks-dev"
-TAG=$1
+# Use the first argument as the tag, or default to 'latest'
+TAG=${1:-latest}
+DOCKER_USER="your-dockerhub-username"
 
-if [ -z "$TAG" ]; then
-  echo "Usage: ./build.sh <tag>"
-  exit 1
-fi
-
-docker build -t $IMAGE_NAME:$TAG .
+echo "Building Docker image with tag: $TAG..."
+docker build -t $DOCKER_USER/brain-tasks-dev:$TAG .
