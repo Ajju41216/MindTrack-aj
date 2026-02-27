@@ -1,7 +1,8 @@
 pipeline {
-    agent any 
+    agent any
 
     stages {
+
         stage('Validate') {
             steps {
                 sh 'docker --version'
@@ -19,10 +20,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh "chmod +x deploy.sh"
+                sh 'chmod +x deploy.sh'
                 sh "./deploy.sh dev-${env.BUILD_NUMBER}"
-           }
-       }
+            }
+        }
+    }   // ✅ This was missing — closes stages block
 
     post {
         always {
