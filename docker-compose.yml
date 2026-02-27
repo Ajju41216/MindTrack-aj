@@ -3,7 +3,7 @@ version: "3.8"
 services:
   brain-app:
     build: .
-    container_name: aj-tasks-app
+    container_name: brain_task_con
     ports:
       - "8080:80"
     restart: unless-stopped
