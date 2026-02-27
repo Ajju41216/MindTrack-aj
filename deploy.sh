@@ -1,9 +1,15 @@
 #!/bin/bash
-DOCKER_USER="your-dockerhub-username"
 
-echo "Cleaning up old containers..."
-docker stop brain-tasks-container || true
-docker rm brain-tasks-container || true
+TAG=$1
+IMAGE="your-dockerhub-username/brain-tasks-dev:$TAG"
+CONTAINER="brain-tasks-container"
 
-echo "Starting new container..."
-docker run -d --name brain-tasks-container -p 80:80 $DOCKER_USER/brain-tasks-dev:latest
+echo "Cleaning up old container..."
+docker stop $CONTAINER || true
+docker rm $CONTAINER || true
+
+echo "Starting new container using image: $IMAGE"
+docker run -d \
+  -p 80:80 \
+  --name $CONTAINER \
+  $IMAGE
